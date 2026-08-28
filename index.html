@@ -146,9 +146,22 @@
     transition:opacity .8s cubic-bezier(.16,.84,.44,1), transform .8s cubic-bezier(.16,.84,.44,1);
   }
   .reveal.is-visible{opacity:1;transform:translateY(0);}
-  .pain-grid .reveal:nth-child(1){transition-delay:.05s;}
-  .pain-grid .reveal:nth-child(2){transition-delay:.18s;}
-  .pain-grid .reveal:nth-child(3){transition-delay:.31s;}
+  .pain-grid .reveal:nth-child(1),
+  .service-grid .reveal:nth-child(1),
+  .process-grid .reveal:nth-child(1),
+  .strength-list .reveal:nth-child(1){transition-delay:.05s;}
+  .pain-grid .reveal:nth-child(2),
+  .service-grid .reveal:nth-child(2),
+  .process-grid .reveal:nth-child(2),
+  .strength-list .reveal:nth-child(2){transition-delay:.18s;}
+  .pain-grid .reveal:nth-child(3),
+  .service-grid .reveal:nth-child(3),
+  .process-grid .reveal:nth-child(3),
+  .strength-list .reveal:nth-child(3){transition-delay:.31s;}
+  .service-grid .reveal:nth-child(4),
+  .process-grid .reveal:nth-child(4){transition-delay:.44s;}
+  .whatis .flow-visual.reveal,
+  .strengths .strength-visual.reveal{transition-delay:.15s;}
 
   /* What is TikTok Shop */
   .whatis .container{
@@ -353,7 +366,7 @@
 
 <section class="whatis">
   <div class="container">
-    <div class="whatis-text">
+    <div class="whatis-text reveal">
       <span class="eyebrow">TIKTOK SHOP とは</span>
       <h2 class="section-title">動画を見た人が、<br>そのまま購入できる。</h2>
       <p class="section-lead">TikTok上で動画やLIVEを見たユーザーが、アプリを離れることなくそのまま商品を購入できる仕組みです。「認知」から「購入」までの導線を、これまでより短く設計できます。</p>
@@ -363,7 +376,7 @@
         <li>既存のEC・実店舗販売に加える形で導入できる</li>
       </ul>
     </div>
-    <div class="flow-visual">
+    <div class="flow-visual reveal">
       <div class="flow-steps">
         <div class="flow-step"><div class="num">1</div><div class="txt">動画・LIVEで商品を知る</div></div>
         <div class="flow-arrow">↓</div>
@@ -381,7 +394,7 @@
     <h2 class="section-title">TikTok Shop活用でできること</h2>
     <p class="section-lead">成果につなげる4つの施策を、企画から運用までワンストップでご支援します。</p>
     <div class="service-grid">
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-top">
           <div class="service-num">01</div>
           <div class="service-icon">
@@ -391,7 +404,7 @@
         </div>
         <p>反応の良い動画に広告配信を行い、自然投稿だけでは届かない層にも露出を拡大。商品ページへの流入や購入機会の増加につなげます。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-top">
           <div class="service-num">02</div>
           <div class="service-icon">
@@ -401,7 +414,7 @@
         </div>
         <p>商品と相性の良いクリエイターに紹介してもらうことで、第三者視点の投稿を増やし、認知拡大と購入導線の強化につなげます。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-top">
           <div class="service-num">03</div>
           <div class="service-icon">
@@ -411,7 +424,7 @@
         </div>
         <p>ショップ開設・商品登録・各種設定・施策管理などをサポート。社内工数を抑えながら、スムーズな立ち上げを支援します。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-top">
           <div class="service-num">04</div>
           <div class="service-icon">
@@ -436,21 +449,21 @@
       <h2 class="section-title">選ばれる理由</h2>
       <p class="section-lead">企画から運用まで、すべてを一つの窓口で完結できます。</p>
       <div class="strength-list">
-        <div class="strength-item">
+        <div class="strength-item reveal">
           <div class="mark">1</div>
           <div>
             <h4>ワンストップ対応</h4>
             <p>動画の企画・撮影・編集・投稿から広告運用、ショップ開設まで、複数社に発注する手間がありません。</p>
           </div>
         </div>
-        <div class="strength-item">
+        <div class="strength-item reveal">
           <div class="mark">2</div>
           <div>
             <h4>数値に基づく改善</h4>
             <p>投稿の反応や広告の数値を継続的に確認しながら、成果につながる形へ運用を調整します。</p>
           </div>
         </div>
-        <div class="strength-item">
+        <div class="strength-item reveal">
           <div class="mark">3</div>
           <div>
             <h4>社内工数を最小限に</h4>
@@ -459,7 +472,7 @@
         </div>
       </div>
     </div>
-    <div class="strength-visual">
+    <div class="strength-visual reveal">
       <div class="big">One Stop</div>
       <div class="cap">企画・撮影・編集・投稿・広告・ショップ運用まで</div>
       <div class="sub">
@@ -476,22 +489,22 @@
     <h2 class="section-title">導入までの流れ</h2>
     <p class="section-lead">お問い合わせから運用開始まで、丁寧にご案内します。</p>
     <div class="process-grid">
-      <div class="process-card">
+      <div class="process-card reveal">
         <div class="step-num">1</div>
         <h4>お問い合わせ</h4>
         <p>メールにて、商材や現状の課題をお知らせください。</p>
       </div>
-      <div class="process-card">
+      <div class="process-card reveal">
         <div class="step-num">2</div>
         <h4>ヒアリング</h4>
         <p>商材の特徴や体制、目標について詳しくお伺いします。</p>
       </div>
-      <div class="process-card">
+      <div class="process-card reveal">
         <div class="step-num">3</div>
         <h4>ご提案</h4>
         <p>貴社に合わせた運用イメージ・進め方をご提案します。</p>
       </div>
-      <div class="process-card">
+      <div class="process-card reveal">
         <div class="step-num">4</div>
         <h4>運用開始</h4>
         <p>コンテンツ制作から広告運用まで、順次スタートします。</p>
@@ -504,7 +517,7 @@
   <div class="container">
     <span class="eyebrow">COMPANY</span>
     <h2 class="section-title">運営会社</h2>
-    <div class="company-box">
+    <div class="company-box reveal">
       <dl>
         <div class="company-row"><dt>会社名</dt><dd>株式会社ライバーコマースジャパン</dd></div>
         <div class="company-row"><dt>事業内容</dt><dd>TikTok Shop運用代行、動画制作、広告運用、インフルエンサーマーケティング支援</dd></div>
