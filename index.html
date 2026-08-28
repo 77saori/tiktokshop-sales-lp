@@ -14,6 +14,8 @@
     --purple-400:#a78bfa;
     --purple-200:#d9d0ff;
     --purple-100:#f1eeff;
+    --pink-500:#e8619f;
+    --pink-400:#f4a3cf;
     --lavender-bg:#f7f5ff;
     --text-main:#2a2547;
     --text-sub:#5b5578;
@@ -48,7 +50,7 @@
   .section-lead{color:var(--text-sub);font-size:16px;max-width:640px;}
   .btn{
     display:inline-flex;align-items:center;gap:10px;
-    background:linear-gradient(135deg,var(--purple-500),var(--purple-700));
+    background:linear-gradient(135deg,var(--purple-500) 0%,var(--purple-700) 55%,var(--pink-500) 100%);
     color:#fff;
     font-weight:700;
     font-size:16px;
@@ -84,7 +86,7 @@
   .hero{
     position:relative;
     padding:100px 0 140px;
-    background:linear-gradient(160deg,var(--purple-900) 0%,var(--purple-700) 45%,var(--purple-500) 100%);
+    background:linear-gradient(150deg,var(--purple-900) 0%,var(--purple-700) 45%,var(--pink-500) 100%);
     color:#fff;
     overflow:hidden;
   }
@@ -94,7 +96,9 @@
     background:var(--white);
     clip-path: ellipse(65% 100% at 50% 100%);
   }
-  .hero .container{position:relative;z-index:2;text-align:center;}
+  .hero .container{position:relative;z-index:2;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;align-items:center;}
+  .hero-text{text-align:left;}
   .hero .tag{
     display:inline-block;background:rgba(255,255,255,0.14);
     border:1px solid rgba(255,255,255,0.35);
@@ -102,25 +106,27 @@
     padding:8px 18px;border-radius:999px;margin-bottom:26px;
   }
   .hero h1{
-    color:#fff;font-size:clamp(30px,5vw,52px);line-height:1.4;letter-spacing:.01em;
+    color:#fff;font-size:clamp(28px,4.2vw,46px);line-height:1.4;letter-spacing:.01em;
     margin-bottom:20px;
   }
   .hero h1 em{
     font-style:normal;
-    background:linear-gradient(90deg,#fff,#e4dcff);
+    background:linear-gradient(90deg,#fff,#ffd7ec);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .hero p.lead{
-    color:rgba(255,255,255,0.86);font-size:17px;max-width:560px;margin:0 auto 40px;
+    color:rgba(255,255,255,0.86);font-size:17px;max-width:520px;margin:0 0 40px;
   }
-  .hero .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .hero .hero-ctas{display:flex;gap:16px;justify-content:flex-start;flex-wrap:wrap;}
   .hero .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,0.55);}
+  .hero-visual{display:flex;justify-content:center;}
+  .hero-visual svg{width:100%;max-width:340px;height:auto;}
 
   .glow{
     position:absolute;border-radius:50%;filter:blur(60px);opacity:.35;pointer-events:none;
   }
   .glow.g1{width:340px;height:340px;background:#d9c9ff;top:-100px;left:-100px;}
-  .glow.g2{width:280px;height:280px;background:#8a7ce8;bottom:20px;right:-60px;}
+  .glow.g2{width:280px;height:280px;background:var(--pink-400);bottom:20px;right:-60px;}
 
   /* Pain points */
   .pains{background:var(--lavender-bg);}
@@ -139,29 +145,18 @@
   .pain-card h3{font-size:17px;margin-bottom:10px;}
   .pain-card p{color:var(--text-sub);font-size:14.5px;}
 
-  /* Scroll reveal */
+  /* Scroll-linked reveal: opacity/position are driven directly by scroll
+     progress (set inline via JS), not a fixed-duration transition, so the
+     motion tracks the scroll gesture itself. */
   .reveal{
     opacity:0;
     transform:translateY(28px);
-    transition:opacity .8s cubic-bezier(.16,.84,.44,1), transform .8s cubic-bezier(.16,.84,.44,1);
+    will-change:opacity,transform;
+    transition:opacity .06s linear, transform .06s linear;
   }
-  .reveal.is-visible{opacity:1;transform:translateY(0);}
-  .pain-grid .reveal:nth-child(1),
-  .service-grid .reveal:nth-child(1),
-  .process-grid .reveal:nth-child(1),
-  .strength-list .reveal:nth-child(1){transition-delay:.05s;}
-  .pain-grid .reveal:nth-child(2),
-  .service-grid .reveal:nth-child(2),
-  .process-grid .reveal:nth-child(2),
-  .strength-list .reveal:nth-child(2){transition-delay:.18s;}
-  .pain-grid .reveal:nth-child(3),
-  .service-grid .reveal:nth-child(3),
-  .process-grid .reveal:nth-child(3),
-  .strength-list .reveal:nth-child(3){transition-delay:.31s;}
-  .service-grid .reveal:nth-child(4),
-  .process-grid .reveal:nth-child(4){transition-delay:.44s;}
-  .whatis .flow-visual.reveal,
-  .strengths .strength-visual.reveal{transition-delay:.15s;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+  }
 
   /* What is TikTok Shop */
   .whatis .container{
@@ -178,13 +173,13 @@
   }
   .flow-step .num{
     width:34px;height:34px;flex:none;border-radius:50%;
-    background:linear-gradient(135deg,var(--purple-500),var(--purple-700));
+    background:linear-gradient(135deg,var(--purple-500),var(--pink-500));
     color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;
   }
   .flow-step .txt{font-size:14.5px;font-weight:600;color:var(--text-main);}
   .flow-arrow{text-align:center;color:var(--purple-400);font-size:18px;}
   .whatis p.section-lead{margin-bottom:20px;}
-  .whatis ul{margin-top:18px;color:var(--text-sub);font-size:15px;}
+  .whatis ul{list-style:none;margin-top:18px;color:var(--text-sub);font-size:15px;}
   .whatis ul li{margin-bottom:10px;padding-left:22px;position:relative;}
   .whatis ul li::before{
     content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;
@@ -205,7 +200,7 @@
   .service-top{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
   .service-num{
     width:42px;height:42px;border-radius:12px;flex:none;
-    background:linear-gradient(135deg,var(--purple-500),var(--purple-700));
+    background:linear-gradient(135deg,var(--purple-500),var(--pink-500));
     color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;
   }
   .service-icon{
@@ -236,7 +231,7 @@
   .strength-item h4{font-size:16px;margin-bottom:4px;color:var(--purple-900);}
   .strength-item p{color:var(--text-sub);font-size:14.5px;}
   .strength-visual{
-    background:linear-gradient(160deg,var(--purple-700),var(--purple-500));
+    background:linear-gradient(160deg,var(--purple-700),var(--pink-500));
     border-radius:26px;padding:48px 32px;color:#fff;text-align:center;box-shadow:var(--shadow);
   }
   .strength-visual .big{font-size:42px;font-weight:800;margin-bottom:6px;}
@@ -276,7 +271,7 @@
 
   /* CTA */
   .cta{
-    background:linear-gradient(160deg,var(--purple-900),var(--purple-700) 60%,var(--purple-500));
+    background:linear-gradient(150deg,var(--purple-900),var(--purple-700) 60%,var(--pink-500));
     color:#fff;text-align:center;
   }
   .cta h2{color:#fff;font-size:clamp(24px,3.4vw,34px);margin-bottom:16px;}
@@ -297,6 +292,12 @@
 
   @media (max-width:860px){
     section{padding:64px 0;}
+    .hero-grid{grid-template-columns:1fr;text-align:center;}
+    .hero-text{text-align:center;}
+    .hero p.lead{margin-left:auto;margin-right:auto;}
+    .hero .hero-ctas{justify-content:center;}
+    .hero-visual{margin-top:8px;}
+    .hero-visual svg{max-width:260px;}
     .pain-grid{grid-template-columns:1fr;}
     .whatis .container{grid-template-columns:1fr;}
     .whatis .flow-visual{order:-1;}
@@ -323,12 +324,98 @@
   <div class="glow g1"></div>
   <div class="glow g2"></div>
   <div class="container">
-    <span class="tag">TikTok Shop 運用代行</span>
-    <h1>動画から購入まで。<br><em>TikTok Shop</em>で新しい販路をつくる。</h1>
-    <p class="lead">企画・撮影・編集・投稿から広告運用、ショップ開設サポートまで。TikTok Shop運用に必要なすべてを、ワンストップで代行します。</p>
-    <div class="hero-ctas">
-      <a class="btn" href="#contact">無料でご相談する</a>
-      <a class="btn btn-outline" href="#service">サービス内容を見る</a>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="tag">TikTok Shop 運用代行</span>
+        <h1>動画から購入まで。<br><em>TikTok Shop</em>で新しい販路をつくる。</h1>
+        <p class="lead">企画・撮影・編集・投稿から広告運用、ショップ開設サポートまで。TikTok Shop運用に必要なすべてを、ワンストップで代行します。</p>
+        <div class="hero-ctas">
+          <a class="btn" href="#contact">無料でご相談する</a>
+          <a class="btn btn-outline" href="#service">サービス内容を見る</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg viewBox="0 0 380 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="スマートフォンでTikTokを見ている女性のイラスト">
+          <defs>
+            <linearGradient id="hoodieGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#c9bbff"/>
+              <stop offset="100%" stop-color="#f3a6d2"/>
+            </linearGradient>
+            <linearGradient id="sleeveGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#b6a4f2"/>
+              <stop offset="100%" stop-color="#ec9bc9"/>
+            </linearGradient>
+            <linearGradient id="phoneScreenGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3a2f6b"/>
+              <stop offset="100%" stop-color="#7a4f86"/>
+            </linearGradient>
+            <radialGradient id="blobGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <circle cx="190" cy="235" r="190" fill="url(#blobGrad)"/>
+
+          <!-- floating bubbles -->
+          <g>
+            <circle cx="52" cy="120" r="27" fill="#ffffff"/>
+            <path d="M52 130c-7-5-12-9-12-15a7 7 0 0113-4 7 7 0 0113 4c0 6-5 10-12 15l-1 1z" fill="#e8619f"/>
+          </g>
+          <g>
+            <circle cx="332" cy="150" r="25" fill="#ffffff"/>
+            <path d="M323 143h18v16a3 3 0 01-3 3h-12a3 3 0 01-3-3z" fill="none" stroke="#6d5bd0" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M327 143v-3a5 5 0 0110 0v3" fill="none" stroke="#6d5bd0" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
+          <g>
+            <circle cx="46" cy="308" r="23" fill="#ffffff"/>
+            <path d="M40 316v-14l12-3v13" fill="none" stroke="#6d5bd0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="38" cy="317" r="3.4" fill="#6d5bd0"/>
+            <circle cx="50" cy="312" r="3.4" fill="#6d5bd0"/>
+          </g>
+          <path d="M310 70l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#ffd7ec" opacity="0.9"/>
+          <path d="M330 320l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#e8c9ff" opacity="0.85"/>
+          <path d="M35 205l3 6 6 3-6 3-3 6-3-6-6-3 6-3z" fill="#ffd7ec" opacity="0.8"/>
+
+          <!-- hair back -->
+          <ellipse cx="190" cy="118" rx="66" ry="70" fill="#2b2145"/>
+
+          <!-- torso / hoodie -->
+          <path d="M124 440 L114 210 Q112 182 145 176 L235 176 Q268 182 266 210 L256 440 Z" fill="url(#hoodieGrad)"/>
+
+          <!-- far arm (down) -->
+          <path d="M244 200 Q272 230 264 285 Q261 300 244 296 Q252 250 232 214 Z" fill="url(#sleeveGrad)"/>
+
+          <!-- near arm bent up holding phone -->
+          <path d="M150 210 Q118 218 112 264 Q109 292 138 300 Q150 262 158 232 Z" fill="url(#sleeveGrad)"/>
+          <circle cx="140" cy="150" r="4" fill="none"/>
+
+          <!-- head -->
+          <circle cx="190" cy="128" r="50" fill="#f4c9a2"/>
+          <path d="M141 118 Q136 70 190 64 Q244 70 239 118 Q239 92 190 88 Q141 92 141 118 Z" fill="#2b2145"/>
+          <path d="M138 128c-6 34 4 58 4 58 -14-4-22-24-19-42 2-11 9-17 15-16z" fill="#2b2145"/>
+          <path d="M242 128c6 34-4 58-4 58 14-4 22-24 19-42-2-11-9-17-15-16z" fill="#2b2145"/>
+
+          <!-- simple face -->
+          <path d="M170 132q6 6 12 0" fill="none" stroke="#6d5540" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M206 132q6 6 12 0" fill="none" stroke="#6d5540" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M182 152q10 8 20 0" fill="none" stroke="#c17d63" stroke-width="2.6" stroke-linecap="round"/>
+
+          <!-- phone -->
+          <g>
+            <rect x="100" y="118" width="92" height="172" rx="20" fill="#241c3d"/>
+            <rect x="107" y="128" width="78" height="152" rx="13" fill="url(#phoneScreenGrad)"/>
+            <rect x="118" y="150" width="56" height="80" rx="8" fill="#ffffff" opacity="0.16"/>
+            <path d="M140 182l16 10-16 10z" fill="#ffffff" opacity="0.85"/>
+            <path d="M160 250c-4-3-6-5-6-8a3.6 3.6 0 016.6-2 3.6 3.6 0 016.6 2c0 3-2 5-6 8l-0.6.5z" fill="#ffffff"/>
+            <rect x="130" y="258" width="34" height="6" rx="3" fill="#ffffff" opacity="0.55"/>
+            <circle cx="146" cy="140" r="3.2" fill="#ffffff" opacity="0.7"/>
+          </g>
+
+          <!-- hand holding phone -->
+          <ellipse cx="108" cy="270" rx="16" ry="12" fill="#f4c9a2"/>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
@@ -546,20 +633,49 @@
 
 <script>
   (function(){
-    var targets = document.querySelectorAll('.reveal');
-    if(!('IntersectionObserver' in window)){
-      targets.forEach(function(el){ el.classList.add('is-visible'); });
-      return;
-    }
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var nodes = document.querySelectorAll('.reveal');
+    if(reduceMotion || !nodes.length) return;
+
+    // Build a stagger offset per element based on its position among
+    // siblings that share the same parent (cards in the same grid ease in
+    // one after another as you scroll, instead of all at once).
+    var items = [];
+    var siblingCount = new Map();
+    nodes.forEach(function(el){
+      var parent = el.parentElement;
+      var idx = siblingCount.get(parent) || 0;
+      siblingCount.set(parent, idx + 1);
+      items.push({ el: el, stagger: idx * 55 });
+    });
+
+    var ticking = false;
+
+    function update(){
+      var vh = window.innerHeight;
+      var start = vh * 0.92;   // element top at this point: fully hidden
+      var end = vh * 0.55;     // element top at this point: fully revealed
+      items.forEach(function(item){
+        var rect = item.el.getBoundingClientRect();
+        var top = rect.top - item.stagger;
+        var progress = (start - top) / (start - end);
+        progress = Math.max(0, Math.min(1, progress));
+        item.el.style.opacity = progress;
+        item.el.style.transform = 'translateY(' + (28 * (1 - progress)) + 'px)';
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    targets.forEach(function(el){ observer.observe(el); });
+      ticking = false;
+    }
+
+    function onScroll(){
+      if(!ticking){
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
   })();
 </script>
 </body>
